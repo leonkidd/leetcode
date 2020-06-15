@@ -3,6 +3,7 @@ package cn.heroes.leetcode;
 import org.junit.Test;
 
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,6 +30,16 @@ public class A0003_无重复字符的最长子串 {
 //	来源：力扣（LeetCode）
 //	链接：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters
 //	著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+	
+	public static void main(String[] args) {
+		LinkedHashSet<Character> set = new LinkedHashSet<Character>();
+		String s = "abcdbcbb";
+		char[] cs = s.toCharArray();
+		for(char c : cs) {
+			set.add(c);
+		}
+		System.out.println(set);
+	}
 	
 	@Test
 	public void testIt() {
