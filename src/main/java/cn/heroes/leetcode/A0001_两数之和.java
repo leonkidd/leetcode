@@ -1,6 +1,8 @@
 package cn.heroes.leetcode;
 
 import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,11 +24,12 @@ public class A0001_两数之和 {
 	}
 	
 	public int[] twoSum(int[] nums, int target) {
-		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 		for(int i = 0; i < nums.length; i++) {
 			int num = nums[i];
 			Integer index = map.get(num);
 			if(index != null) {
+				// Leon: 精妙所在, 边装边查，来避开同数复用问题。
 				if(num + num == target) {
 					return new int[]{index, i};
 				}
@@ -39,6 +42,7 @@ public class A0001_两数之和 {
 		for(int i = 0; i < nums.length; i++) {
 			int num = nums[i];
 			Integer index = map.get(target - num);
+			// Leon: 精妙所在
 			if(index != null && index != i) {
 				return new int[]{i, index};
 			}
@@ -46,4 +50,14 @@ public class A0001_两数之和 {
 		}
 		return null;
 	}
+	public int[] official(int[] nums, int target) {
+        Map<Integer, Integer> hashtable = new HashMap<Integer, Integer>();
+        for (int i = 0; i < nums.length; ++i) {
+            if (hashtable.containsKey(target - nums[i])) {
+                return new int[]{hashtable.get(target - nums[i]), i};
+            }
+            hashtable.put(nums[i], i);
+        }
+        return new int[0];
+    }
 }
